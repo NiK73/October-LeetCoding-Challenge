@@ -1,0 +1,22 @@
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], P: int) -> int:
+        score = 0
+        maximumScore = 0
+        tokens.sort()
+
+        while(tokens):
+            if(P>=tokens[0]):
+                minimum = tokens.pop(0)
+                P -= minimum
+                score += 1
+                if(score>maximumScore):
+                    maximumScore = score
+            else:
+                if(score>=1):
+                    maximum = tokens.pop()
+                    P += maximum
+                    score -= 1
+                else:
+                    break
+            
+        return(maximumScore)
